@@ -8,6 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kotlin_android_jetpack_demo.databinding.ActivityMainBinding
+import com.example.kotlin_android_jetpack_demo.domain.ProductItem
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 
 class MainActivity : AppCompatActivity() {
 
