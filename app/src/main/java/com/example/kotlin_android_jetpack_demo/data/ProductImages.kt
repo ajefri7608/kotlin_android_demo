@@ -1,3 +1,5 @@
+package com.example.kotlin_android_jetpack_demo.data
+
 data class ProductImages(
     val id:String,
     var filePath: String,
