@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
-data  class ProductItem  (
+@Entity(tableName = "productItem")
+data class ProductItem  (
     @PrimaryKey val uid: Int,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "price") val price: Int?,
@@ -22,7 +22,7 @@ data  class ProductItem  (
     @ColumnInfo(name = "fuelType") val fuelType: String?,
     @ColumnInfo(name = "used") val used: String?,
     @ColumnInfo(name = "base64ImageTest") val base64ImageTest: String?,
-    @ColumnInfo(name = "images") val images: Array<ProductImages>?,
+    @ColumnInfo(name = "images") val images: List<ProductImages>?,
 
     )
 

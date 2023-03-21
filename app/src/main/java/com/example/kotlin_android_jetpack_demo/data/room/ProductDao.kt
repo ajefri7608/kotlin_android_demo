@@ -7,6 +7,6 @@ import com.example.kotlin_android_jetpack_demo.data.ProductItem
 
 @Dao
  abstract class ProductDao : BaseDao<ProductItem> {
- @Query("SELECT * FROM categories")
+ @Query("SELECT * FROM productItem")
  abstract suspend fun getProductList(): ProductItem?
 }
