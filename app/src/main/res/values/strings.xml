@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">KotlinAndroidDemo</string>
-    <string name="homeScreen">HomeScreen</string>
-    <string name="loginScreen">LoginScreen</string>
+    <string name="homeScreen">Home</string>
+    <string name="searchScreen">Search</string>
+
+    <string name="loginScreen">User</string>
+    <string name="settingScreen">Setting</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.kotlinandroiddemo.view
+package com.example.kotlinandroiddemo.view.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
