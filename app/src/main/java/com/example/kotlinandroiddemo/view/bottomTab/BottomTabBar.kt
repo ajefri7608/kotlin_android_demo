@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -27,16 +28,17 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.kotlinandroiddemo.model.Screen
+import com.example.kotlinandroiddemo.model.ShakeConfig
 import com.example.kotlinandroiddemo.ui.theme.Typography
 import com.example.kotlinandroiddemo.utils.compose.shake
+import com.example.kotlinandroiddemo.utils.rememberShakeController
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
-
-
 @Composable
 fun bottomTabBar(navController: NavController) {
+
     BottomNavigation(
         backgroundColor = Color.White,
         modifier = Modifier
@@ -55,12 +57,13 @@ fun bottomTabBar(navController: NavController) {
         val iconOffset = remember { Animatable(0f) }
         items.forEachIndexed { index, screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+            val shakeController = rememberShakeController()
             BottomNavigationItem(
                 icon = {
                     Image(
                         painter = painterResource(id = screen.icon),
                         modifier = Modifier
-                            .shake(selected)
+                            .shake(shakeController)
                             .size(21.dp),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(
@@ -78,16 +81,15 @@ fun bottomTabBar(navController: NavController) {
                 selected = selected,
                 alwaysShowLabel = false,
                 onClick = {
-                    scope.launch {
-                        iconOffset.animateTo(
-                            20f,
-                            animationSpec = tween(2000),
+                    shakeController.shake(
+                        ShakeConfig(
+                            iterations = 4,
+                            intensity = 2_000f,
+                            rotateY = 15f,
+                            translateX = 40f,
                         )
-                        iconOffset.animateTo(
-                            10f,
-                            animationSpec = tween(2000),
-                        )
-                    }
+                    )
+
                     navController.navigate(screen.route) {
                         // Pop up to the start destination of the graph to
                         // avoid building up a large stack of destinations
