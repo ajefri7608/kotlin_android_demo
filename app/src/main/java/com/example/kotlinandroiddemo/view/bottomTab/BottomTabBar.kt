@@ -29,11 +29,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.kotlinandroiddemo.model.Screen
 import com.example.kotlinandroiddemo.model.ShakeConfig
-import com.example.kotlinandroiddemo.ui.theme.Typography
 import com.example.kotlinandroiddemo.utils.compose.shake
 import com.example.kotlinandroiddemo.utils.rememberShakeController
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 
 @Composable
@@ -51,10 +48,8 @@ fun bottomTabBar(navController: NavController) {
             Screen.LoginScreen,
             Screen.SettingScreen
         )
-        val scope = rememberCoroutineScope()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
-        val iconOffset = remember { Animatable(0f) }
         items.forEachIndexed { index, screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
             val shakeController = rememberShakeController()
@@ -84,9 +79,7 @@ fun bottomTabBar(navController: NavController) {
                     shakeController.shake(
                         ShakeConfig(
                             iterations = 4,
-                            intensity = 2_000f,
-                            rotateY = 15f,
-                            translateX = 40f,
+                            translateX = 6.5f,
                         )
                     )
 
