@@ -1,10 +1,6 @@
 package com.example.kotlinandroiddemo.view.bottomTab
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.animate
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -13,8 +9,6 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -28,9 +22,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.kotlinandroiddemo.model.Screen
-import com.example.kotlinandroiddemo.model.ShakeConfig
 import com.example.kotlinandroiddemo.utils.compose.shake
-import com.example.kotlinandroiddemo.utils.rememberShakeController
 
 
 @Composable
@@ -52,13 +44,12 @@ fun bottomTabBar(navController: NavController) {
         val currentDestination = navBackStackEntry?.destination
         items.forEachIndexed { index, screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
-            val shakeController = rememberShakeController()
             BottomNavigationItem(
                 icon = {
                     Image(
                         painter = painterResource(id = screen.icon),
                         modifier = Modifier
-                            .shake(shakeController)
+                            .shake()
                             .size(21.dp),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(
@@ -76,12 +67,6 @@ fun bottomTabBar(navController: NavController) {
                 selected = selected,
                 alwaysShowLabel = false,
                 onClick = {
-                    shakeController.shake(
-                        ShakeConfig(
-                            iterations = 4,
-                            translateX = 6.5f,
-                        )
-                    )
 
                     navController.navigate(screen.route) {
                         // Pop up to the start destination of the graph to
