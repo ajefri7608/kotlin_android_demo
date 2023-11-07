@@ -1,9 +1,9 @@
 package com.example.kotlinandroiddemo
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,9 +16,10 @@ import com.example.kotlinandroiddemo.view.search.SearchScreen
 import com.example.kotlinandroiddemo.view.setting.SettingScreen
 
 @Composable
-fun NavGraph (
+fun NavGraph(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController())  {
+    navController: NavHostController = rememberNavController()
+) {
 
     val navController = rememberNavController()
     Scaffold(
@@ -26,11 +27,14 @@ fun NavGraph (
             bottomTabBar(navController = navController)
         }
     ) { innerPadding ->
-        NavHost(navController, startDestination = Screen.HomeScreen.route, Modifier.padding(innerPadding)) {
+        NavHost(
+            navController,
+            startDestination = Screen.HomeScreen.route,
+        ) {
             composable(Screen.HomeScreen.route) { HomeScreen(navController) }
             composable(Screen.LoginScreen.route) { LoginScreen(navController) }
-            composable(Screen.SearhScreen.route){ SearchScreen()}
-            composable(Screen.SettingScreen.route){ SettingScreen() }
+            composable(Screen.SearhScreen.route) { SearchScreen() }
+            composable(Screen.SettingScreen.route) { SettingScreen() }
         }
     }
 }

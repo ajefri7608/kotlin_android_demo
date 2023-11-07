@@ -26,7 +26,7 @@ fun Modifier.shake() = composed(
             targetValue = if (buttonState == true) -6.5f else 0f,
             animationSpec = repeatable(
                 iterations = 7,
-                animation = tween(durationMillis = 250, easing = LinearEasing),
+                animation = tween(durationMillis = 90, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
             ), label = ""
         )
