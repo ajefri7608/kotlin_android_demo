@@ -53,7 +53,7 @@ android {
 
 dependencies {
     val nav_version = "2.6.0"
-
+    val lottieVersion = "6.1.0"
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.7.2")
@@ -74,7 +74,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("androidx.navigation:navigation-compose:$nav_version")
-
+    implementation("com.airbnb.android:lottie-compose:$lottieVersion")
 }
 
 kapt {
