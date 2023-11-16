@@ -2,11 +2,14 @@ package com.example.kotlinandroiddemo.view.bottomTab
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,12 +32,13 @@ import com.example.kotlinandroiddemo.utils.compose.shake
 @Composable
 fun bottomTabBar(navController: NavController) {
 
-    BottomNavigation(
+    NavigationBar(
         modifier = Modifier
+
             .graphicsLayer {
                 this.shape = RoundedCornerShape(33.dp, 33.dp, 0.dp, 0.dp);this.clip = true
             },
-        backgroundColor = Color.White
+        containerColor = Color.White
     ) {
         val items = listOf(
             Screen.HomeScreen,
@@ -46,12 +50,12 @@ fun bottomTabBar(navController: NavController) {
         val currentDestination = navBackStackEntry?.destination
         items.forEachIndexed { index, screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
-            BottomNavigationItem(
+            NavigationBarItem(
                 icon = {
                     Image(
                         painter = painterResource(id = screen.icon),
                         modifier = Modifier
-                            .shake()
+                            .shake(selected)
                             .size(21.dp),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(
@@ -67,6 +71,9 @@ fun bottomTabBar(navController: NavController) {
                     )
                 },
                 selected = selected,
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color.White
+                ),
                 alwaysShowLabel = false,
                 onClick = {
 

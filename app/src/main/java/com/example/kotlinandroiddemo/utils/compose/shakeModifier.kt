@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,13 +18,13 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 
 
-fun Modifier.shake() = composed(
+fun Modifier.shake(selected: Boolean) = composed(
 
     factory = {
 
-        var buttonState by remember { mutableStateOf(false) }
+//        var buttonState by remember { mutableStateOf(false) }
         val transX by animateFloatAsState(
-            targetValue = if (buttonState == true) -6.5f else 0f,
+            targetValue = if (selected == true) -6.5f else 0f,
             animationSpec = repeatable(
                 iterations = 7,
                 animation = tween(durationMillis = 90, easing = LinearEasing),
@@ -35,12 +36,5 @@ fun Modifier.shake() = composed(
             .graphicsLayer {
                 translationX = transX
             }
-            .pointerInput(buttonState) {
-                awaitPointerEventScope {
-                    buttonState = !buttonState
-                }
-            }
-
-
     }
 )
