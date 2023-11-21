@@ -23,8 +23,9 @@ fun Modifier.shake(selected: Boolean) = composed(
     factory = {
 
 //        var buttonState by remember { mutableStateOf(false) }
+        
         val transX by animateFloatAsState(
-            targetValue = if (selected == true) -6.5f else 0f,
+            targetValue = if (selected) -6.5f else 0f,
             animationSpec = repeatable(
                 iterations = 7,
                 animation = tween(durationMillis = 90, easing = LinearEasing),

@@ -12,6 +12,9 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -48,6 +51,11 @@ fun bottomTabBar(navController: NavController) {
         )
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
+        val animList = remember {
+            List(4) { index ->
+                mutableStateOf(false)
+            }
+        }
         items.forEachIndexed { index, screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
             NavigationBarItem(
@@ -55,11 +63,11 @@ fun bottomTabBar(navController: NavController) {
                     Image(
                         painter = painterResource(id = screen.icon),
                         modifier = Modifier
-                            .shake(selected)
+                            .shake(animList[index].value)
                             .size(21.dp),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(
-                            if (selected == true) Color("#00c090".toColorInt()) else Color("#748c94".toColorInt())
+                            if (selected) Color("#00c090".toColorInt()) else Color("#748c94".toColorInt())
                         )
                     )
                 },
@@ -76,7 +84,7 @@ fun bottomTabBar(navController: NavController) {
                 ),
                 alwaysShowLabel = false,
                 onClick = {
-
+                    animList[index].value = !animList[index].value
                     navController.navigate(screen.route) {
                         // Pop up to the start destination of the graph to
                         // avoid building up a large stack of destinations
