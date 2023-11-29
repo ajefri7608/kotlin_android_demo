@@ -11,5 +11,10 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 
-val Grey05 = Color(0x585858)
-val Black = Color(0x000000)
+val Grey05 = Color(0xFF585858)
+val Black = Color(0xFF000000)
+val White = Color(0xFF000000)
+val LightGrey01 = Color(0xFF9E9E9E)
+val LightGrey05 = Color(0XFFF2F2F2)
+val LightRed = Color(0xFFF2796B)
+val PlaceHolderColor = Color(0xFF7c7c7c)

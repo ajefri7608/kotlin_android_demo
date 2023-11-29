@@ -3,6 +3,7 @@ package com.example.kotlinandroiddemo.view.bottomTab
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.NavigationBar
@@ -37,7 +38,7 @@ fun bottomTabBar(navController: NavController) {
 
     NavigationBar(
         modifier = Modifier
-
+            .offset(0.dp, 16.dp)
             .graphicsLayer {
                 this.shape = RoundedCornerShape(33.dp, 33.dp, 0.dp, 0.dp);this.clip = true
             },
@@ -75,7 +76,8 @@ fun bottomTabBar(navController: NavController) {
                     Text(
                         text = stringResource(screen.title),
                         color = Color("#748c94".toColorInt()),
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
+                        modifier = Modifier.offset(0.dp, (-7).dp)
                     )
                 },
                 selected = selected,

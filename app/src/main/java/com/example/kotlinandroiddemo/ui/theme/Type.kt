@@ -102,7 +102,12 @@ val Body02 = TextStyle(
     letterSpacing = 0.sp,
     color = Grey05,
 );
-
+val Body02Light = TextStyle(
+    fontFamily = FontFamily(Font(R.font.roboto_slab_regular)),
+    fontSize = 14.sp,
+    letterSpacing = 0.sp,
+    color = LightGrey01,
+);
 val Body02SemiBold = TextStyle(
     fontFamily = FontFamily(Font(R.font.roboto_slab_semi_bold)),
     fontSize = 14.sp,
@@ -123,3 +128,10 @@ val Body04 = TextStyle(
     letterSpacing = 0.sp,
     color = Grey05,
 );
+
+val PlaceHolderText = TextStyle(
+    fontFamily = FontFamily(Font(R.font.roboto_slab_regular)),
+    fontSize = 13.sp,
+    letterSpacing = 0.sp,
+    color = PlaceHolderColor,
+)
