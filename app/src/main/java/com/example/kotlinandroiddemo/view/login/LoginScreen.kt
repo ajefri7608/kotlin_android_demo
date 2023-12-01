@@ -35,6 +35,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
@@ -48,11 +51,14 @@ import com.example.kotlinandroiddemo.ui.theme.Header01ExtraBold
 import com.example.kotlinandroiddemo.ui.theme.LightGrey05
 import com.example.kotlinandroiddemo.ui.theme.LightRed
 import com.example.kotlinandroiddemo.ui.theme.PlaceHolderText
+import com.example.kotlinandroiddemo.viewmodel.UserViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavController = rememberNavController()) {
+    val userViewModel = hiltViewModel<UserViewModel>()
+
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.hello))
     val progress by animateLottieCompositionAsState(composition)
     var userNameInput by remember { mutableStateOf("") }
@@ -123,7 +129,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
 
         )
         Button(
-            onClick = { /*TODO*/ }, modifier = Modifier
+            onClick = { userViewModel.login(userNameInput, passwordInput) }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp, 25.dp),
 

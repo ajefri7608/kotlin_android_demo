@@ -8,14 +8,19 @@ import com.example.kotlinandroiddemo.model.User
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val db: AppDatabase) {
-    private val userInfo = MutableLiveData<User>()
+    val userInfo = MutableLiveData<User>()
 
 
-    suspend fun login(userName: String, password: String) {
+    suspend fun getUser(userName: String, password: String) {
         var response = db.userDao().getUserInfoByNameAndPw(userName, password)
         if (response !== null) {
             userInfo.postValue(response)
         }
 
+
+    }
+
+    suspend fun setUser(user: User) {
+        db.userDao().saveUserInfo(user)
     }
 }
