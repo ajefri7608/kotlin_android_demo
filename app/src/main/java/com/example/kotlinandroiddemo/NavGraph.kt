@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.kotlinandroiddemo.model.Screen
 import com.example.kotlinandroiddemo.view.bottomTab.bottomTabBar
+import com.example.kotlinandroiddemo.view.common.BottomSheet
 import com.example.kotlinandroiddemo.view.home.HomeScreen
 import com.example.kotlinandroiddemo.view.login.LoginScreen
 import com.example.kotlinandroiddemo.view.search.SearchScreen
@@ -27,7 +28,7 @@ fun NavGraph(
             bottomTabBar(navController = navController)
         }
     ) { innerPadding ->
-
+        BottomSheet()
         NavHost(
             navController,
             startDestination = Screen.HomeScreen.route,
